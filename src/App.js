@@ -3,31 +3,21 @@ import DefaultScreenLayout from './components/defaultScreenLayout'
 import ScreenSize from './components/screenSize'
 import usePages from './hooks/usePages'
 import MainSectionWrapper from './components/mainSectionWrapper'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 function App() {
   const [currentPath, setCurrentPath] = useState("/");
   const [previousPath, setPreviousPath] = useState(null);
 
-
-  const [isScrollLocked, setIsScrollLocked] = useState(false);
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [currentPath, isScrollLocked]);
-
-
   const { pages, getActivePage, getNextPageIndex, getPreviousPageIndex } = usePages(currentPath);
 
-  const handlePathChange = (newPath) => {
+  const handlePathChange = useCallback((newPath) => {
     setPreviousPath(currentPath);
     setCurrentPath(newPath);
-  }
+  }, [currentPath, setCurrentPath, setPreviousPath]);
 
 
-  const handleScroll = (e) => {
+  const handleScroll = useCallback((e) => {
     if (e.deltaY > 0) {
       // scroll down -> next page
       handlePathChange(pages[getNextPageIndex()].path);
@@ -41,7 +31,17 @@ function App() {
     setTimeout(() => {
       setIsScrollLocked(false);
     }, 400);
-  }
+  }, [getNextPageIndex, getPreviousPageIndex, handlePathChange, pages])
+
+
+  const [isScrollLocked, setIsScrollLocked] = useState(false);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [currentPath, isScrollLocked, handleScroll]);
+
 
   return (
       <div about="container" onWheel={ isScrollLocked ? null : handleScroll }
