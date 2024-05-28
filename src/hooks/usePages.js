@@ -39,11 +39,21 @@ const usePages = (currentPath) => {
 
   const getActivePage = () => pages.find(page => page.path === currentPath)
 
-  const activePage = getActivePage();
+  const getNextPageIndex = () => {
+    const currentPageIndex = pages.findIndex(page => page.path === currentPath);
+    return currentPageIndex === pages.length - 1 ? 0 : currentPageIndex + 1;
+  }
+
+  const getPreviousPageIndex = () => {
+    const currentPageIndex = pages.findIndex(page => page.path === currentPath);
+    return currentPageIndex === 0 ? pages.length - 1 : currentPageIndex - 1;
+  }
 
   return {
     pages,
-    activePage,
+    getActivePage,
+    getNextPageIndex,
+    getPreviousPageIndex
   }
 }
 
