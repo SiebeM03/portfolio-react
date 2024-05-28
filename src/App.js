@@ -3,7 +3,7 @@ import DefaultScreenLayout from './components/defaultScreenLayout'
 import ScreenSize from './components/screenSize'
 import usePages from './hooks/nav/usePages'
 import MainSectionWrapper from './components/mainSectionWrapper'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import useScroll from './hooks/nav/useScroll'
 import useSwipe from './hooks/nav/useSwipe'
 
