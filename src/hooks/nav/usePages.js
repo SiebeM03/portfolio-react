@@ -1,7 +1,7 @@
-import Home from '../pages/home'
-import Works from '../pages/works'
-import About from '../pages/about'
-import Contact from '../pages/contact'
+import Home from '../../pages/home'
+import Works from '../../pages/works'
+import About from '../../pages/about'
+import Contact from '../../pages/contact'
 
 const usePages = (currentPath) => {
   const pages = [
@@ -39,21 +39,21 @@ const usePages = (currentPath) => {
 
   const getActivePage = () => pages.find(page => page.path === currentPath)
 
-  const getNextPageIndex = () => {
+  const getNextPage = () => {
     const currentPageIndex = pages.findIndex(page => page.path === currentPath);
-    return currentPageIndex === pages.length - 1 ? 0 : currentPageIndex + 1;
+    return pages[currentPageIndex === pages.length - 1 ? 0 : currentPageIndex + 1];
   }
 
-  const getPreviousPageIndex = () => {
+  const getPreviousPage = () => {
     const currentPageIndex = pages.findIndex(page => page.path === currentPath);
-    return currentPageIndex === 0 ? pages.length - 1 : currentPageIndex - 1;
+    return pages[currentPageIndex === 0 ? pages.length - 1 : currentPageIndex - 1];
   }
 
   return {
     pages,
     getActivePage,
-    getNextPageIndex,
-    getPreviousPageIndex
+    getNextPage,
+    getPreviousPage
   }
 }
 

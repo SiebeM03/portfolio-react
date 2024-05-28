@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import usePages from '../hooks/usePages'
+import usePages from '../hooks/nav/usePages'
 
 
 // CSS: 742-829

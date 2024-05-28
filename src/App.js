@@ -1,50 +1,33 @@
 import './App.css';
 import DefaultScreenLayout from './components/defaultScreenLayout'
 import ScreenSize from './components/screenSize'
-import usePages from './hooks/usePages'
+import usePages from './hooks/nav/usePages'
 import MainSectionWrapper from './components/mainSectionWrapper'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import useScroll from './hooks/nav/useScroll'
+import useSwipe from './hooks/nav/useSwipe'
 
 function App() {
+  const containerRef = useRef()
+
   const [currentPath, setCurrentPath] = useState("/");
   const [previousPath, setPreviousPath] = useState(null);
 
-  const { pages, getActivePage, getNextPageIndex, getPreviousPageIndex } = usePages(currentPath);
+  const { pages, getActivePage, getNextPage, getPreviousPage } = usePages(currentPath);
 
   const handlePathChange = useCallback((newPath) => {
     setPreviousPath(currentPath);
     setCurrentPath(newPath);
   }, [currentPath, setCurrentPath, setPreviousPath]);
 
+  const handleNextPage = useCallback(() => handlePathChange(getNextPage().path), [handlePathChange, getNextPage]);
+  const handlePreviousPage = useCallback(() => handlePathChange(getPreviousPage().path), [handlePathChange, getPreviousPage]);
 
-  const handleScroll = useCallback((e) => {
-    if (e.deltaY > 0) {
-      // scroll down -> next page
-      handlePathChange(pages[getNextPageIndex()].path);
-    } else {
-      // scroll up -> previous page
-      handlePathChange(pages[getPreviousPageIndex()].path);
-    }
-    setIsScrollLocked(true);
-
-    // Lock scrolling for 2 seconds (2000 milliseconds)
-    setTimeout(() => {
-      setIsScrollLocked(false);
-    }, 400);
-  }, [getNextPageIndex, getPreviousPageIndex, handlePathChange, pages])
-
-
-  const [isScrollLocked, setIsScrollLocked] = useState(false);
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [currentPath, isScrollLocked, handleScroll]);
-
+  const { handleScroll } = useScroll(handleNextPage, handlePreviousPage);
+  const { handleTouchStart } = useSwipe(containerRef, handleNextPage, handlePreviousPage);
 
   return (
-      <div about="container" onWheel={ isScrollLocked ? null : handleScroll }
+      <div about="container" onWheel={ handleScroll } ref={ containerRef }
            className="relative min-h-full outline-[30px] outline-color-accent transition duration-300">
         <ScreenSize/>
         <DefaultScreenLayout currentPath={ currentPath } setCurrentPath={ handlePathChange }>
