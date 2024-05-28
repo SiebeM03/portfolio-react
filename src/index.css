@@ -5,8 +5,12 @@
 @tailwind utilities;
 
 :root {
-    --scroll-animation-duration: 0.3s;
+    --color-text: #e5e7eb;
+    --color-background: #171717;
+    --color-accent: #1d4ed8;
     --color-gray: #555;
+
+    --scroll-animation-duration: 0.3s;
     --side-nav-animation-duration: 0.25s;
     --side-nav-dot-animation-delay: 0.1s;
     --side-nav-dot-animation-duration: 0.2s;
@@ -108,4 +112,25 @@ body {
 .section-prev {
     transform: translateY(45px);
     transition: transform var(--scroll-animation-duration) ease-in-out;
+}
+
+
+.typewriter:after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 4px;
+    height: 48px;
+    background-color: var(--color-accent);
+    animation: blink 1s step-start infinite 2.2s;
+}
+
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }

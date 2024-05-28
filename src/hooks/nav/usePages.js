@@ -9,31 +9,26 @@ const usePages = (currentPath) => {
       name: 'Home',
       component: <Home/>,
       path: '/',
-      before: 'before:content-["01"]'
     },
     {
       name: 'Works',
       component: <Works/>,
       path: '/works',
-      before: 'before:content-["02"]'
     },
     {
       name: 'Internship',
       component: <div>Internship</div>,
       path: '/internship',
-      before: 'before:content-["03"]'
     },
     {
       name: 'About',
       component: <About/>,
       path: '/about',
-      before: 'before:content-["04"]'
     },
     {
       name: 'Contact',
       component: <Contact/>,
       path: '/contact',
-      before: 'before:content-["05"]'
     }
   ]
 
