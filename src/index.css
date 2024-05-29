@@ -151,6 +151,7 @@ body {
 .container-div {
     transform: translateZ(0) translateX(0) rotateY(0deg);
     transition: transform 0.4s;
+    overflow: hidden;
 }
 
 .effect-rotate-left .container-div {
@@ -160,12 +161,19 @@ body {
 
 .effect-rotate-left--animate .container-div {
     transform: translateZ(-1800px) translateX(-50%) rotateY(45deg);
-    outline: 30px solid #0f33ff
+    outline: 30px solid #0f33ff;
+    cursor: pointer;
 }
 
 
 /* Outer nav */
 .outer-nav {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    max-width: 50%;
     transform-style: preserve-3d;
 
     visibility: hidden;

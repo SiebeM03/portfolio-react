@@ -5,7 +5,6 @@ const useScroll = (handleNextPage, handlePreviousPage) => {
   const { isScrollLocked, lockScroll } = useScrollLock();
 
   const handleScroll = useCallback((e) => {
-    return null;
     if (isScrollLocked) return;
 
     // scroll down -> next page

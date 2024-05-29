@@ -3,7 +3,7 @@ import DefaultScreenLayout from './components/defaultScreenLayout'
 import ScreenSize from './components/screenSize'
 import usePages from './hooks/nav/usePages'
 import MainSectionWrapper from './components/mainSectionWrapper'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import useScroll from './hooks/nav/useScroll'
 import useSwipe from './hooks/nav/useSwipe'
 
@@ -31,20 +31,29 @@ function App() {
   const [isModalView, setIsModalView] = useState(false);
   const [isAnimated, setIsAnimated] = useState(false);
   const openOuterNav = (e) => {
-    e.stopPropagation();
+    e?.stopPropagation();
     setIsModalView(true);
     setTimeout(() => setIsAnimated(true), 25);
   }
   const closeOuterNav = (e) => {
-    e.stopPropagation();
+    console.log('closeOuterNav')
+    e?.stopPropagation();
     setIsAnimated(false);
     setTimeout(() => setIsModalView(false), 400);
   }
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") closeOuterNav()
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
       <div
           className={ `perspective effect-rotate-left ${ isModalView ? 'perspective--modalview' : '' } ${ isAnimated ? 'effect-rotate-left--animate' : '' }` }>
-        <div about="container" onWheel={ handleScroll } ref={ containerRef } onClick={ closeOuterNav }
+        <div about="container" onWheel={ handleScroll } ref={ containerRef }
+             onClick={ closeOuterNav } onTouchEnd={ closeOuterNav }
              className="container-div relative min-h-full outline outline-[30px] outline-color-accent">
           <ScreenSize/>
           <DefaultScreenLayout currentPath={ currentPath } setCurrentPath={ handlePathChange }
@@ -64,13 +73,14 @@ function App() {
           </DefaultScreenLayout>
         </div>
 
-        <ul className={ `outer-nav absolute top-1/2 -translate-y-1/2 right-1/3 m-0 p-0 list-none text-center ${ isModalView && isAnimated ? 'is-vis' : '' }` }>
+        <ul className={ `outer-nav m-0 p-0 list-none text-center ${ isModalView && isAnimated ? 'is-vis' : '' }` }>
           { pages.map((page, index) => {
             const isActive = page.path === getActivePage().path;
             return <li key={ page.path }
                        style={ isModalView && isAnimated ? { transitionDelay: `${ index * 0.04 }s` } : {} }
                        className={ `text-5xl font-bold cursor-pointer ${ isModalView && isAnimated ? 'is-vis' : 'opacity-0' } ${ isActive ? 'is-active' : '' }` }>
-              <button onClick={ () => handlePathChange(page.path) }>{ page.name }</button>
+              <button className="w-full" onClick={ () => handlePathChange(page.path) }
+                      onTouchEnd={ () => handlePathChange(page.path) }>{ page.name }</button>
             </li>
           }) }
         </ul>
