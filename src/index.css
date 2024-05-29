@@ -128,9 +128,74 @@ body {
     animation: blink 1s step-start infinite 2.2s;
 }
 
-
 @keyframes blink {
     50% {
         opacity: 0;
     }
+}
+
+
+/* Perspective view */
+.perspective {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.perspective--modalview {
+    position: fixed;
+    perspective: 1500px
+}
+
+.container-div {
+    transform: translateZ(0) translateX(0) rotateY(0deg);
+    transition: transform 0.4s;
+}
+
+.effect-rotate-left .container-div {
+    transform-origin: 0 50%;
+    transition: transform 0.4s;
+}
+
+.effect-rotate-left--animate .container-div {
+    transform: translateZ(-1800px) translateX(-50%) rotateY(45deg);
+    outline: 30px solid #0f33ff
+}
+
+
+/* Outer nav */
+.outer-nav {
+    transform-style: preserve-3d;
+
+    visibility: hidden;
+    transition: visibility 0s 0.2s;
+}
+
+.outer-nav.is-vis {
+    visibility: visible;
+}
+
+.outer-nav > li {
+    transform: translateX(350px) translateZ(-1000px);
+    transition: transform .2s, opacity .2s;
+}
+
+.outer-nav > li.is-vis {
+    transform: translateX(0) translateZ(0);
+    transition: transform .4s, opacity .4s;
+}
+
+.outer-nav > li.is-active > button:before {
+    content: '';
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+
+    width: 110%;
+    height: 10px;
+
+    background-color: var(--color-accent);
 }
