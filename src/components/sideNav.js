@@ -13,7 +13,8 @@ const SideNav = ({ currentPath, setCurrentPath }) => {
           { pages.map((page, index) => <NavItem key={ index } page={ page } currentPath={ currentPath }
                                                 setCurrentPath={ setCurrentPath }/>) }
         </ul>
-      </nav>);
+      </nav>
+  );
 }
 
 const NavItem = ({ page, currentPath, setCurrentPath }) => {

@@ -37,13 +37,13 @@ function App() {
   }
   const closeOuterNav = (e) => {
     console.log('closeOuterNav')
-    e?.stopPropagation();
+    e.stopPropagation();
     setIsAnimated(false);
     setTimeout(() => setIsModalView(false), 400);
   }
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") closeOuterNav()
+      if (e.key === "Escape") closeOuterNav(e)
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -52,8 +52,12 @@ function App() {
   return (
       <div
           className={ `perspective effect-rotate-left ${ isModalView ? 'perspective--modalview' : '' } ${ isAnimated ? 'effect-rotate-left--animate' : '' }` }>
+        { (isModalView || isAnimated) &&
+          // Modal return overlay
+          <div className="container-div w-full z-20 absolute min-h-full" onClick={ closeOuterNav } onTouchEnd={ closeOuterNav }/>
+        }
+
         <div about="container" onWheel={ handleScroll } ref={ containerRef }
-             onClick={ closeOuterNav } onTouchEnd={ closeOuterNav }
              className="container-div relative min-h-full outline outline-[30px] outline-color-accent">
           <ScreenSize/>
           <DefaultScreenLayout currentPath={ currentPath } setCurrentPath={ handlePathChange }

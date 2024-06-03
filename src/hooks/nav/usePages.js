@@ -2,6 +2,7 @@ import Home from '../../pages/home'
 import Works from '../../pages/works'
 import About from '../../pages/about'
 import Contact from '../../pages/contact'
+import Internship from '../../pages/internship'
 
 const usePages = (currentPath) => {
   const pages = [
@@ -17,7 +18,7 @@ const usePages = (currentPath) => {
     },
     {
       name: 'Internship',
-      component: <div>Internship</div>,
+      component: <Internship/>,
       path: '/internship',
     },
     {
