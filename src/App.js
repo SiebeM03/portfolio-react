@@ -6,6 +6,7 @@ import MainSectionWrapper from './components/mainSectionWrapper'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import useScroll from './hooks/nav/useScroll'
 import useSwipe from './hooks/nav/useSwipe'
+import ModalNav from './components/modalNav'
 
 function App() {
   const containerRef = useRef()
@@ -13,13 +14,20 @@ function App() {
   const [currentPath, setCurrentPath] = useState("/");
   const [previousPath, setPreviousPath] = useState(null);
 
+  const [isModalView, setIsModalView] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false);
+
+
   const { pages, getActivePage, getNextPage, getPreviousPage } = usePages(currentPath);
 
   const handlePathChange = useCallback((newPath) => {
+    // If the new path is the same as the current path, do nothing
     if (newPath === currentPath) return;
     setPreviousPath(currentPath);
     setCurrentPath(newPath);
-  }, [currentPath, setCurrentPath, setPreviousPath]);
+
+    if (isModalView || isAnimated) closeOuterNav();
+  }, [currentPath, setCurrentPath, setPreviousPath, isModalView, isAnimated]);
 
   const handleNextPage = useCallback(() => handlePathChange(getNextPage().path), [handlePathChange, getNextPage]);
   const handlePreviousPage = useCallback(() => handlePathChange(getPreviousPage().path), [handlePathChange, getPreviousPage]);
@@ -28,19 +36,20 @@ function App() {
   useSwipe(containerRef, handleNextPage, handlePreviousPage);
 
 
-  const [isModalView, setIsModalView] = useState(false);
-  const [isAnimated, setIsAnimated] = useState(false);
   const openOuterNav = (e) => {
+    // Open the outer nav with animations
     e?.stopPropagation();
     setIsModalView(true);
     setTimeout(() => setIsAnimated(true), 25);
   }
   const closeOuterNav = (e) => {
+    // Close the outer nav with animations
     console.log('closeOuterNav')
-    e.stopPropagation();
+    e?.stopPropagation();
     setIsAnimated(false);
     setTimeout(() => setIsModalView(false), 400);
   }
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") closeOuterNav(e)
@@ -50,13 +59,8 @@ function App() {
   }, []);
 
   return (
-      <div
-          className={ `perspective effect-rotate-left ${ isModalView ? 'perspective--modalview' : '' } ${ isAnimated ? 'effect-rotate-left--animate' : '' }` }>
-        { (isModalView || isAnimated) &&
-          // Modal return overlay
-          <div className="container-div w-full z-20 absolute min-h-full" onClick={ closeOuterNav } onTouchEnd={ closeOuterNav }/>
-        }
-
+      <ModalNav isModalView={ isModalView } isAnimated={ isAnimated } currentPath={ currentPath }
+                closeOuterNav={ closeOuterNav } handlePathChange={ handlePathChange }>
         <div about="container" onWheel={ handleScroll } ref={ containerRef }
              className="container-div relative min-h-full outline outline-[30px] outline-color-accent">
           <ScreenSize/>
@@ -76,19 +80,7 @@ function App() {
             }) }
           </DefaultScreenLayout>
         </div>
-
-        <ul className={ `outer-nav m-0 p-0 list-none text-center ${ isModalView && isAnimated ? 'is-vis' : '' }` }>
-          { pages.map((page, index) => {
-            const isActive = page.path === getActivePage().path;
-            return <li key={ page.path }
-                       style={ isModalView && isAnimated ? { transitionDelay: `${ index * 0.04 }s` } : {} }
-                       className={ `text-5xl font-bold cursor-pointer ${ isModalView && isAnimated ? 'is-vis' : 'opacity-0' } ${ isActive ? 'is-active' : '' }` }>
-              <button className="w-full" onClick={ () => handlePathChange(page.path) }
-                      onTouchEnd={ () => handlePathChange(page.path) }>{ page.name }</button>
-            </li>
-          }) }
-        </ul>
-      </div>
+      </ModalNav>
   );
 }
 

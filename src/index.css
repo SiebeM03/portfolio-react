@@ -170,7 +170,8 @@ body {
 .outer-nav {
     position: absolute;
     top: 50%;
-    right: 0;
+    /* See tailwind for right setting */
+    /* right: 10%; */
     transform: translateY(-50%);
 
     max-width: 50%;
@@ -203,7 +204,7 @@ body {
     transform: translate(-50%, -25%);
 
     width: 110%;
-    height: 10px;
+    height: 20%;
 
     background-color: var(--color-accent);
 }
