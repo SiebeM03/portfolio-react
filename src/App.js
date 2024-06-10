@@ -11,7 +11,7 @@ import ModalNav from './components/modalNav'
 function App() {
   const containerRef = useRef()
 
-  const [currentPath, setCurrentPath] = useState("/");
+  const [currentPath, setCurrentPath] = useState("/works");
   const [previousPath, setPreviousPath] = useState(null);
 
   const [isModalView, setIsModalView] = useState(false);
@@ -44,7 +44,6 @@ function App() {
   }
   const closeOuterNav = (e) => {
     // Close the outer nav with animations
-    console.log('closeOuterNav')
     e?.stopPropagation();
     setIsAnimated(false);
     setTimeout(() => setIsModalView(false), 400);
@@ -61,8 +60,7 @@ function App() {
   return (
       <ModalNav isModalView={ isModalView } isAnimated={ isAnimated } currentPath={ currentPath }
                 closeOuterNav={ closeOuterNav } handlePathChange={ handlePathChange }>
-        <div about="container" onWheel={ handleScroll } ref={ containerRef }
-             className="container-div relative min-h-full outline outline-[30px] outline-color-accent">
+        <div onWheel={ handleScroll } ref={ containerRef }>
           <ScreenSize/>
           <DefaultScreenLayout currentPath={ currentPath } setCurrentPath={ handlePathChange }
                                openOuterNav={ openOuterNav }>

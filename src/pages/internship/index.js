@@ -1,8 +1,8 @@
 const Internship = () => {
   return (
-    <div>
-      Internship
-    </div>
+      <div>
+        Internship
+      </div>
   )
 }
 

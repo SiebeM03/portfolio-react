@@ -207,3 +207,12 @@ body {
 
     background-color: var(--color-accent);
 }
+
+.home--action-buttons a {
+    color: var(--color-accent);
+    transition: color 0.2s ease-in-out;
+}
+
+.home--action-buttons a:hover {
+    color: var(--color-text);
+}

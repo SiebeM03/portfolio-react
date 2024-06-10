@@ -1,7 +1,14 @@
 import usePages from '../hooks/nav/usePages'
 
 // This is the navigation menu that shows up when the user clicks the hamburger icon in the top right corner of the screen.
-const ModalNav = ({ children, currentPath, isModalView, isAnimated, closeOuterNav, handlePathChange }) => {
+const ModalNav = ({
+  children,
+  currentPath,
+  isModalView,
+  isAnimated,
+  closeOuterNav,
+  handlePathChange
+}) => {
   const { getActivePage, pages } = usePages(currentPath);
 
   return (
@@ -13,7 +20,10 @@ const ModalNav = ({ children, currentPath, isModalView, isAnimated, closeOuterNa
                  onTouchEnd={ closeOuterNav }/>
         }
 
-        { children }
+        <div about="container"
+             className="container-div relative min-h-full outline outline-[30px] outline-color-accent">
+          { children }
+        </div>
 
         <ul className={ `outer-nav m-0 p-0 list-none ${ isModalView && isAnimated ? 'is-vis' : '' } right-[10%]` }>
           { pages.map((page, index) => {
