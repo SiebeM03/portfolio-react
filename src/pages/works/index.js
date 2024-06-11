@@ -72,7 +72,8 @@ const Works = ({ isActive }) => {
         { activeProject === null
             ? (<>
                   <div className="">
-                    <h1 className="text-3xl text-white font-bold">Works</h1>
+                    <h1 className="text-3xl text-white font-bold">Works
+                      ({ activeBreakpoint + ' ' + activeGridConfig.classes })</h1>
                   </div>
 
                   <div className={ `flex-1 flex flex-wrap ${ activeGridConfig.classes }` }>
