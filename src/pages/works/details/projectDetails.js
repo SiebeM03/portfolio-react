@@ -3,38 +3,47 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import Description from './description'
 import Technologies from './technologies'
-import projects from '../../../data/projects'
+import ResultsComponent from './resultsComponent'
 
-const segments = [
-  'description',
-  'technologies',
-  'results'
-]
 
 const ProjectDetails = ({ project, closeProject }) => {
-  const [activeSegment, setActiveSegment] = useState(segments[0]);
+  const [activeSegment, setActiveSegment] = useState(project.tabs[0].title);
 
   return (
-      <div className="h-full">
-        <button onClick={ closeProject } onTouchEnd={ closeProject }>
-          <FontAwesomeIcon icon={ faArrowLeft }/> Go back
+      <div className="h-full"
+           onTouchStart={ (e) => e.stopPropagation() }
+           onTouchMove={ (e) => e.stopPropagation() }
+           onTouchEnd={ (e) => e.stopPropagation() }
+      >
+        <button onClick={ closeProject } onTouchEnd={ closeProject } className="text-base flex items-center opacity-50 hover:opacity-100 duration-200">
+          <FontAwesomeIcon icon={ faArrowLeft } className="h-5 mr-2"/> Go back
         </button>
 
         <div className="h-full mt-4">
           <h1 className="text-3xl text-white font-bold">{ project.name }</h1>
 
-          <div className="px-4 mt-2">
-
-            <div className="flex justify-between">
-              { segments.map((segment, index) => (
-                  <button key={ index } onClick={ () => setActiveSegment(segment) }
-                          className={ `text-white text-lg ${ activeSegment === segment ? 'underline decoration-2 decoration-color-accent' : 'opacity-50' }` }>
-                    { segment.charAt(0).toUpperCase() + segment.slice(1) }
-                  </button>
-              )) }
+          <div className="px-4 mt-4 h-full flex flex-col">
+            <div className="flex justify-around">
+              { project.tabs.map((tab, index) => {
+                const isActive = activeSegment === tab.title;
+                return (
+                    <button key={ index }
+                            onClick={ () => setActiveSegment(tab.title) }
+                            onTouchEnd={ () => setActiveSegment(tab.title) }
+                            className={ `w-1/3 flex flex-col items-center group space-y-1 text-white text-lg ${ isActive ? '' : 'opacity-50' }` }>
+                      <div className={ `mx-auto w-8 h-8 ${ isActive ? 'text-color-accent' : 'text-white' }` }>
+                        { tab.icon }
+                      </div>
+                      <p className={ `${ isActive ? 'visible underline decoration-2 decoration-color-accent' : 'invisible group-hover:visible' } capitalize ` }>
+                        { tab.title }
+                      </p>
+                    </button>
+                )
+              })
+              }
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 h-full flex-1">
               { activeSegment === 'description' && (
                   <Description description={ project.description.long }/>
               ) }
@@ -45,7 +54,7 @@ const ProjectDetails = ({ project, closeProject }) => {
               ) }
 
               { activeSegment === 'results' && (
-                  <p className="text-white">{ project.results }</p>
+                  <ResultsComponent results={ project.results }/>
               ) }
             </div>
           </div>

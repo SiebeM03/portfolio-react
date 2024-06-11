@@ -1,19 +1,14 @@
 import ProfilePicture from './profilePicture'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
+import usePreventScroll from '../../hooks/usePreventScroll'
 
 const Home = ({ isActive }) => {
-  const textElement = useRef();
+  const { textElement } = usePreventScroll();
 
   useEffect(() => {
     // Scroll to top when the section becomes active
     if (isActive) textElement.current.scrollTop = 0;
-  }, [isActive]);
-
-
-  const handleTouch = (e) => {
-    // Prevent scrolling the page when the text is scrollable
-    if (textElement.current.scrollHeight > textElement.current.clientHeight) e.stopPropagation();
-  }
+  }, [isActive, textElement]);
 
   return (
       <div className="h-full flex flex-col md:flex-row items-center md:space-x-6 max-md:space-y-4 pb-4">
@@ -23,17 +18,14 @@ const Home = ({ isActive }) => {
         </div>
 
         {/* TODO check if scrollbar gets shown on mobile */ }
-        <div className="flex flex-1 flex-col overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }
-             onTouchStart={ handleTouch } onTouchEnd={ handleTouch } onTouchMove={ handleTouch }
-             onWheel={ handleTouch }>
+        <div className="flex flex-1 flex-col overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Hi, I'm <span
               className="text-blue-500 text-nowrap">Siebe Michiels</span></h1>
           <p className="sm:text-lg">
             My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
-            Kempen.
-            On this website, you'll find information about me, my internship, the projects I've worked on, and the
-            skills I've
-            developed throughout my journey. Feel free to explore and get in touch if you'd like to learn more!
+            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
+            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
+            learn more!
           </p>
         </div>
       </div>

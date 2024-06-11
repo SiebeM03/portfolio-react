@@ -11,7 +11,7 @@ import ModalNav from './components/modalNav'
 function App() {
   const containerRef = useRef()
 
-  const [currentPath, setCurrentPath] = useState("/works");
+  const [currentPath, setCurrentPath] = useState("/");
   const [previousPath, setPreviousPath] = useState(null);
 
   const [isModalView, setIsModalView] = useState(false);

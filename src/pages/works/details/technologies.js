@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
-const Technologies = ({ skills, focuses }) => {
+const Technologies = ({ skills }) => {
   return (
       <div className="space-y-8">
         <p>
-          Tools and technologies used in this project, ordered by the amount of time I spent on them in this project:
+          Tools and technologies used in this project, ordered by the amount of time I spent on them during this project:
         </p>
 
         { skills.sort((skillA, skillB) => skillB.focus - skillA.focus).map((skill, index) => (

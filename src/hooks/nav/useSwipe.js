@@ -11,14 +11,12 @@ const useSwipe = (wrapperRef, handleNextPage, handlePreviousPage) => {
   const [startY, setStartY] = useState(0)
 
   const handleTouchStart = useCallback((e) => {
-    if (!wrapperRef.current.contains(e.target)) return
     e.preventDefault()
 
     setStartY(e.touches[0].clientY)
-  }, [wrapperRef])
+  }, [])
 
   const handleTouchEnd = useCallback((e) => {
-    if (!wrapperRef.current.contains(e.target)) return
     e.preventDefault()
     if (isScrollLocked) return
 
@@ -32,8 +30,9 @@ const useSwipe = (wrapperRef, handleNextPage, handlePreviousPage) => {
     // swipe up -> next page
     if (deltaY < 0) handleNextPage()
 
+
     lockScroll()
-  }, [wrapperRef, isScrollLocked, startY, lockScroll, handlePreviousPage, handleNextPage])
+  }, [isScrollLocked, startY, lockScroll, handlePreviousPage, handleNextPage])
 
   useEffect(() => {
     window.addEventListener("touchstart", handleTouchStart, { passive: false })

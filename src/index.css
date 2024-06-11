@@ -6,7 +6,7 @@
 
 :root {
     --color-text: #e5e7eb;
-    --color-background: #171717;
+    --color-background: #1c1c1c;
     --color-accent: #1d4ed8;
     --color-gray: #555;
 
@@ -215,4 +215,29 @@ body {
 
 .home--action-buttons a:hover {
     color: var(--color-text);
+}
+
+
+.project-description {
+    height: calc(100% - 190px);
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+    padding-left: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #777;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
 }

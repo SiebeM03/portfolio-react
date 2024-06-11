@@ -40,7 +40,6 @@ const Works = ({ isActive }) => {
 
   const [activeProject, setActiveProject] = useState(null);
 
-
   const {
     activePage,
     setActivePage,
@@ -72,11 +71,10 @@ const Works = ({ isActive }) => {
         { activeProject === null
             ? (<>
                   <div className="">
-                    <h1 className="text-3xl text-white font-bold">Works
-                      ({ activeBreakpoint + ' ' + activeGridConfig.classes })</h1>
+                    <h1 className="text-3xl text-white font-bold">Works</h1>
                   </div>
 
-                  <div className={ `flex-1 flex flex-wrap ${ activeGridConfig.classes }` }>
+                  <div className={ `flex-1 flex flex-wrap max-h-side-nav items-center ${ activeGridConfig.classes }` }>
                     { getPaginatedItems().map((project, index) => (
                         <ProjectCard key={ index } project={ project } openProject={ openProject }/>
                     )) }

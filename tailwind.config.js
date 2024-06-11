@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         'color-text': "#e5e7eb",
         'color-background': {
-          DEFAULT: '#171717',
+          DEFAULT: '#1c1c1c',
           '50': '#383838',
           '100': '#323232',
           '200': '#2D2D2D',
@@ -25,7 +25,7 @@ module.exports = {
         'color-gray': "#555",
       },
       maxHeight: {
-        'side-nav': '750px'
+        'side-nav': '750px',
       },
       height: {
         '7/10': '70%'

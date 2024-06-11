@@ -4,8 +4,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const breakpoints = defaultTheme.screens;
 
 const useBreakpoints = () => {
-  const [activeBreakpoint, setActiveBreakpoint] = useState('md');
-
   const getActiveBreakpoint = () => {
     const width = window.innerWidth;
 
@@ -16,6 +14,9 @@ const useBreakpoints = () => {
     if (width >= parseInt(breakpoints.sm)) return 'sm';
     return 'xs';
   }
+
+  const [activeBreakpoint, setActiveBreakpoint] = useState(getActiveBreakpoint())
+
 
   useEffect(() => {
     const handleResize = () => setActiveBreakpoint(getActiveBreakpoint());
