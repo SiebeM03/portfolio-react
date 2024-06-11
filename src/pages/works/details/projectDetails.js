@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Description from './description'
 import Technologies from './technologies'
 import ResultsComponent from './resultsComponent'
+import GithubButton from '../../../components/githubButton'
 
 
 const ProjectDetails = ({ project, closeProject }) => {
@@ -15,12 +16,16 @@ const ProjectDetails = ({ project, closeProject }) => {
            onTouchMove={ (e) => e.stopPropagation() }
            onTouchEnd={ (e) => e.stopPropagation() }
       >
-        <button onClick={ closeProject } onTouchEnd={ closeProject } className="text-base flex items-center opacity-50 hover:opacity-100 duration-200">
+        <button onClick={ closeProject } onTouchEnd={ closeProject }
+                className="text-base flex items-center opacity-50 hover:opacity-100 duration-200">
           <FontAwesomeIcon icon={ faArrowLeft } className="h-5 mr-2"/> Go back
         </button>
 
         <div className="h-full mt-4">
-          <h1 className="text-3xl text-white font-bold">{ project.name }</h1>
+          <h1 className="text-3xl text-white font-bold flex items-center">
+            { project.name }
+            { project.github && <GithubButton url={ project.github } classes="ml-12 h-8 w-8 hover:text-color-accent duration-200"/> }
+          </h1>
 
           <div className="px-4 mt-4 h-full flex flex-col">
             <div className="flex justify-around">

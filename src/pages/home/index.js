@@ -1,6 +1,7 @@
 import ProfilePicture from './profilePicture'
 import { useEffect } from 'react'
 import usePreventScroll from '../../hooks/usePreventScroll'
+import GithubButton from '../../components/githubButton'
 
 const Home = ({ isActive }) => {
   const { textElement } = usePreventScroll();
@@ -36,18 +37,21 @@ const Home = ({ isActive }) => {
 const ActionButtons = () => {
   return (
       <div className="home--action-buttons w-full md:text-lg text-color-accent font-semibold">
-        <div className="h-full flex flex-col md:flex-row justify-center max-md:space-y-8 md:justify-around">
+        <div className="h-full flex flex-col md:flex-row justify-center items-center max-md:space-y-8 md:justify-around">
           <a href={ process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf" }
              download="SiebeMichiels_Resume.pdf"
              className="flex flex-row md:flex-col items-center space-x-2">
             <i className="fas fa-file-download fa-lg"/><span className="md:hidden">Resume</span>
           </a>
 
-          <a onClick={ () => window.open('https://www.linkedin.com/in/siebe-michiels/', '_blank') }
-             onTouchEnd={ () => window.open('https://www.linkedin.com/in/siebe-michiels/', '_blank') }
-             className="flex flex-row md:flex-col items-center space-x-2">
+          <button onClick={ () => window.open('https://www.linkedin.com/in/siebe-michiels/', '_blank') }
+                  onTouchEnd={ () => window.open('https://www.linkedin.com/in/siebe-michiels/', '_blank') }
+                  className="flex flex-row md:flex-col items-center space-x-2 max-md:pl-1">
             <i className="fab fa-linkedin fa-lg"/><span className="md:hidden">LinkedIn</span>
-          </a>
+          </button>
+
+          <GithubButton url="https://github.com/SiebeM03" text={ <span className="md:hidden">GitHub</span> }
+                        classes="flex flex-row md:flex-col items-center space-x-2 h-5 md:h-6 md:w-6"/>
         </div>
       </div>
   )

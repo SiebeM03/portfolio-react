@@ -1,4 +1,4 @@
-import { angular, git, java, python, react, spring, tailwind } from './technologies'
+import { angular, docker, java, mongodb, python, react, spring, sql, tailwind } from './technologies'
 import { DescriptionIcon, ResultsIcon, TechnologiesIcon } from '../pages/works/details/segmentIcons'
 
 
@@ -55,10 +55,10 @@ const projects = [
       )
     },
     skills: [
-      { ...angular, focus: 0.3 },
       { ...spring, focus: 0.8 },
+      { ...python, focus: 0.7 },
+      { ...angular, focus: 0.3 },
       { ...tailwind, focus: 0.2 },
-      { ...python, focus: 0.7 }
     ],
     results: [
       {
@@ -82,6 +82,7 @@ const projects = [
   {
     name: 'Portfolio',
     tabs: [projectTabs.technologies],
+    github: 'https://github.com/SiebeM03/portfolio-react',
     description: {
       short: <p>This is my portfolio website, the one you're visiting right at this moment. I created this website to
         showcase my projects and skills. I have created this website using React and TailwindCSS.</p>,
@@ -91,8 +92,43 @@ const projects = [
           { ...react, focus: 1 },
           { ...tailwind, focus: 0.9 },
         ],
+  },
+
+  {
+    name: 'Project Enterprise Development Experience',
+    tabs: [projectTabs.description, projectTabs.technologies],
+    github: 'https://github.com/BrentSimons/Project-EDE-BNB',
+    description: {
+      short: 'School project in which we had to create a cluster of microservices that can interact with each other. This ',
+      long: (
+          <div className="space-y-4">
+            <p>
+              During my education, I participated in a school project in which we had to create a cluster of
+              microservices that can interact with each other. The goal of this project was to give us a better
+              understanding of how microservices work and how they can interact with each other. We had to create a web
+              application that allowed users to book a room at a bed&breakfast. This project was done in collaboration
+              with one other students. All proof and documentation can be found on the GitHub page of the project, I
+              recommend you to take a look at it for more context.
+            </p>
+            <p>
+              In this project I mainly focused the Room and Reservation microservices, I had to create a microservice
+              that handled all the bookings and room availability. This was done using Java and Spring. The Room service
+              was connected to a MongoDB database to store all the information about the rooms while the Reservation
+              service was connected to a SQL database.
+            </p>
+          </div>
+      )
+    },
+    skills:
+        [
+          { ...spring, focus: 0.9 },
+          { ...docker, focus: 0.7 },
+          { ...sql, focus: 0.3 },
+          { ...mongodb, focus: 0.3 },
+        ],
   }
-  ,/*
+
+  /*
   {
     name: 'Project 3',
     description: {

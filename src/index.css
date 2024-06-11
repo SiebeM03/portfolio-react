@@ -208,12 +208,14 @@ body {
     background-color: var(--color-accent);
 }
 
-.home--action-buttons a {
+.home--action-buttons a,
+.home--action-buttons button {
     color: var(--color-accent);
     transition: color 0.2s ease-in-out;
 }
 
-.home--action-buttons a:hover {
+.home--action-buttons a:hover,
+.home--action-buttons button:hover {
     color: var(--color-text);
 }
 
