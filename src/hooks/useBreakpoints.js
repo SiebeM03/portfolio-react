@@ -21,7 +21,11 @@ const useBreakpoints = () => {
     const handleResize = () => setActiveBreakpoint(getActiveBreakpoint());
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('load', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('load', handleResize);
+    }
   }, []);
 
   return {
