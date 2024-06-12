@@ -12,10 +12,18 @@ const Home = ({ isActive }) => {
           <ActionButtons/>
         </div>
 
-        <div className="flex flex-1 flex-col overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }>
+        <div className="h-[calc(100%-317px)] overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Hi, I'm <span
               className="text-blue-500 text-nowrap">Siebe Michiels</span></h1>
           <p className="sm:text-lg">
+            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
+            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
+            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
+            learn more!
+            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
+            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
+            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
+            learn more!
             My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
             Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
             the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
