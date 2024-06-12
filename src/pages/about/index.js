@@ -14,7 +14,7 @@ const About = ({ isActive }) => {
         <h1 className="text-3xl text-white font-bold mb-4 md:mb-10">About me</h1>
 
         <div
-            className="max-h-[calc(100%-100px)] h-min flex max-md:flex-col md:flex-row max-md:space-y-4 md:space-x-8 items-center">
+            className="max-h-[calc(100%-150px)] h-min flex max-md:flex-col md:flex-row max-md:space-y-4 md:space-x-8 items-center">
           <div ref={ textElement } className="max-md:grow space-y-4 h-1/2 md:h-full overflow-y-auto basis-3/4 pr-4">
             <p>I’m Siebe Michiels, a { age }-year-old student specializing in application development. With a deep
               passion for coding and technology, I am constantly exploring new ways to bring ideas to life through
