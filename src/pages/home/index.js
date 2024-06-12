@@ -32,8 +32,8 @@ const ActionButtons = () => {
       <div className="home--action-buttons w-full md:text-lg text-color-accent font-semibold">
         <div
             className="h-full flex flex-col md:flex-row justify-center items-center max-md:space-y-8 md:justify-around">
-          <button onClick={ () => window.open(process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf") }
-                  onTouchEnd={ () => window.open(process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf") }
+          <button onClick={ () => window.open(process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2406_EN.pdf") }
+                  onTouchEnd={ () => window.open(process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2406_EN.pdf") }
                   className="flex flex-row md:flex-col items-center space-x-2">
             <i className="fas fa-file-download fa-lg"/><span className="md:hidden">Resume</span>
           </button>
