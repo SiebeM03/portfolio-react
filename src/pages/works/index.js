@@ -52,9 +52,9 @@ const Works = ({ isActive }) => {
   return activeProject === null
       ? (
           <div className="h-full flex flex-col justify-center">
-            <h1 className="text-3xl text-white font-bold">Works</h1>
 
-            <div ref={ textElement } className={ `flex flex-wrap max-h-[calc(100%-116px)] overflow-y-auto ${ activeGridConfig.classes }` }>
+            <h1 className="text-3xl text-white font-bold">Works</h1>
+            <div ref={ textElement } className={ `flex flex-wrap max-h-[calc(100%-206px)] overflow-y-auto ${ activeGridConfig.classes }` }>
               { projects.map((project, index) => (
                   <ProjectCard key={ index } project={ project } openProject={ openProject }/>
               )) }

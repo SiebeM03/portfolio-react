@@ -12,26 +12,10 @@ const Home = ({ isActive }) => {
           <ActionButtons/>
         </div>
 
-        <div className="h-[calc(100%-317px)] overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }>
+        <div className="max-md:h-[calc(100%-317px)] overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Hi, I'm <span
               className="text-blue-500 text-nowrap">Siebe Michiels</span></h1>
           <p className="sm:text-lg">
-            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
-            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
-            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
-            learn more!
-            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
-            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
-            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
-            learn more!
-            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
-            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
-            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
-            learn more!
-            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
-            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
-            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
-            learn more!
             My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
             Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
             the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
@@ -48,11 +32,12 @@ const ActionButtons = () => {
       <div className="home--action-buttons w-full md:text-lg text-color-accent font-semibold">
         <div
             className="h-full flex flex-col md:flex-row justify-center items-center max-md:space-y-8 md:justify-around">
-          <a href={ process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf" }
-             download="SiebeMichiels_Resume.pdf"
-             className="flex flex-row md:flex-col items-center space-x-2">
+          <button onClick={ () => window.open(process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf") }
+                  onTouchEnd={ () => window.open(process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf") }
+                  className="flex flex-row md:flex-col items-center space-x-2">
             <i className="fas fa-file-download fa-lg"/><span className="md:hidden">Resume</span>
-          </a>
+          </button>
+
 
           <button onClick={ () => window.open('https://www.linkedin.com/in/siebe-michiels/', '_blank') }
                   onTouchEnd={ () => window.open('https://www.linkedin.com/in/siebe-michiels/', '_blank') }
