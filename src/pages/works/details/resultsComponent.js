@@ -33,7 +33,7 @@ const ResultsComponent = ({ results }) => {
           <img src={ activeResult.image } alt={ activeResult.title } className="mx-auto h-full object-contain select-none"/>
         </div>
 
-        <p ref={ textElement } className="h-[25%] w-full overflow-y-auto">{ activeResult.description }</p>
+        <p ref={ textElement } className="h-[25%] w-full overflow-y-auto pr-4">{ activeResult.description }</p>
       </div>
   )
 }

@@ -1,7 +1,14 @@
 import { useEffect, useRef } from 'react'
 
-const usePreventScroll = () => {
+const usePreventScroll = (scrollResetTrigger = null) => {
   const textElement = useRef()
+
+  useEffect(() => {
+    // Scroll to top when the scrollResetTrigger changes to true
+    if (scrollResetTrigger === null) return
+    if (scrollResetTrigger) textElement.current.scrollTop = 0;
+  }, [scrollResetTrigger, textElement]);
+
 
   const preventScrollIfOverflowing = (e) => {
     if (textElement.current.scrollHeight > textElement.current.clientHeight) e.stopPropagation()

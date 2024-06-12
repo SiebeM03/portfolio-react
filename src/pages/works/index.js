@@ -70,9 +70,7 @@ const Works = ({ isActive }) => {
       <div className="h-full flex flex-col justify-center">
         { activeProject === null
             ? (<>
-                  <div className="">
-                    <h1 className="text-3xl text-white font-bold">Works</h1>
-                  </div>
+                  <h1 className="text-3xl text-white font-bold">Works</h1>
 
                   <div className={ `flex-1 flex flex-wrap max-h-side-nav items-center ${ activeGridConfig.classes }` }>
                     { getPaginatedItems().map((project, index) => (

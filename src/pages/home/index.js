@@ -1,15 +1,9 @@
 import ProfilePicture from './profilePicture'
-import { useEffect } from 'react'
 import usePreventScroll from '../../hooks/usePreventScroll'
 import GithubButton from '../../components/githubButton'
 
 const Home = ({ isActive }) => {
-  const { textElement } = usePreventScroll();
-
-  useEffect(() => {
-    // Scroll to top when the section becomes active
-    if (isActive) textElement.current.scrollTop = 0;
-  }, [isActive, textElement]);
+  const { textElement } = usePreventScroll(isActive);
 
   return (
       <div className="h-full flex flex-col md:flex-row items-center md:space-x-6 max-md:space-y-4 pb-4">
@@ -18,7 +12,6 @@ const Home = ({ isActive }) => {
           <ActionButtons/>
         </div>
 
-        {/* TODO check if scrollbar gets shown on mobile */ }
         <div className="flex flex-1 flex-col overflow-y-auto md:basis-2/3 lg:basis-3/4" ref={ textElement }>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Hi, I'm <span
               className="text-blue-500 text-nowrap">Siebe Michiels</span></h1>
@@ -37,7 +30,8 @@ const Home = ({ isActive }) => {
 const ActionButtons = () => {
   return (
       <div className="home--action-buttons w-full md:text-lg text-color-accent font-semibold">
-        <div className="h-full flex flex-col md:flex-row justify-center items-center max-md:space-y-8 md:justify-around">
+        <div
+            className="h-full flex flex-col md:flex-row justify-center items-center max-md:space-y-8 md:justify-around">
           <a href={ process.env.PUBLIC_URL + "/files/CV_SiebeMichiels_2310_EN.pdf" }
              download="SiebeMichiels_Resume.pdf"
              className="flex flex-row md:flex-col items-center space-x-2">

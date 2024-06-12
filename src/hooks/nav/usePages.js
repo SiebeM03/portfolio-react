@@ -1,7 +1,6 @@
 import Home from '../../pages/home'
 import Works from '../../pages/works'
 import About from '../../pages/about'
-import Contact from '../../pages/contact'
 import Internship from '../../pages/internship'
 
 const usePages = (currentPath) => {
@@ -26,11 +25,6 @@ const usePages = (currentPath) => {
       component: <About/>,
       path: '/about',
     },
-    {
-      name: 'Contact',
-      component: <Contact/>,
-      path: '/contact',
-    }
   ]
 
   const getActivePage = () => pages.find(page => page.path === currentPath)
