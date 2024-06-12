@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import usePreventScroll from '../../hooks/usePreventScroll'
 
 const ProjectCard = ({ project, openProject }) => {
   const [startY, setStartY] = useState(0)
@@ -18,14 +19,16 @@ const ProjectCard = ({ project, openProject }) => {
     openProject(project)
   }
 
+  const { textElement } = usePreventScroll()
+
   return (
-      <div className="h-1/2  p-2" onClick={ () => openProject(project) }
+      <div className="p-2" onClick={ () => openProject(project) }
            onTouchStart={ handleTouchStart }
            onTouchEnd={ handleTouchEnd }>
         <div
-            className="h-full bg-color-background-400 hover:bg-color-background-200 duration-200 border-2 border-color-background-300 rounded-lg overflow-hidden p-4 cursor-pointer">
+            className="flex flex-col h-full bg-color-background-400 hover:bg-color-background-200 duration-200 border-2 border-color-background-300 rounded-lg p-4 cursor-pointer">
           <h2 className="text-xl font-bold text-white">{ project.name }</h2>
-          <p className="text-white my-3">{ project.description.short }</p>
+          <p className="text-white my-4 grow overflow-y-auto" ref={ textElement }>{ project.description.short }</p>
 
           <div className="flex flex-wrap">
             { project.skills.map((skill, index) => (

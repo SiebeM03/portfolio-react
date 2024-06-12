@@ -6,6 +6,7 @@ import projects from '../../data/projects'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import ProjectDetails from './details/projectDetails'
+import usePreventScroll from '../../hooks/usePreventScroll'
 
 const gridConfig = {
   '2xl': {
@@ -40,62 +41,37 @@ const Works = ({ isActive }) => {
 
   const [activeProject, setActiveProject] = useState(null);
 
-  const {
-    activePage,
-    setActivePage,
-    pageCount,
-    handlePrevPage,
-    handleNextPage,
-    getPaginatedItems
-  } = usePagination(projects, activeGridConfig.itemsPerPage);
-
-
   useEffect(() => {
+    console.log(activeBreakpoint)
     setActiveGridConfig(gridConfig[activeBreakpoint]);
-    if (activePage > pageCount) setActivePage(pageCount);
-  }, [activeBreakpoint, activePage, pageCount, setActivePage]);
+  }, [activeBreakpoint]);
 
   useEffect(() => {
     // Reset active page when the component is out of sight
     if (!isActive) return
-    setActivePage(1);
     setActiveProject(null)
-  }, [isActive, setActivePage]);
+  }, [isActive]);
 
 
   const openProject = (project) => setActiveProject(project);
   const closeProject = () => setActiveProject(null);
 
+
+  const { textElement } = usePreventScroll()
+
   return (
       <div className="h-full flex flex-col justify-center">
         { activeProject === null
-            ? (<>
+            ? (
+                <>
                   <h1 className="text-3xl text-white font-bold">Works</h1>
 
-                  <div className={ `flex-1 flex flex-wrap max-h-side-nav items-center ${ activeGridConfig.classes }` }>
-                    { getPaginatedItems().map((project, index) => (
+                  <div ref={ textElement }
+                       className={ `flex flex-wrap max-h-[calc(100%-36px)] overflow-y-auto ${ activeGridConfig.classes }` }>
+                    { projects.map((project, index) => (
                         <ProjectCard key={ index } project={ project } openProject={ openProject }/>
                     )) }
                   </div>
-
-                  { activeGridConfig.itemsPerPage < projects.length && (
-                      <div className="min-w-20 max-h-20 pb-2">
-                        <div
-                            className="ml-auto w-min flex h-10 justify-end my-3 border border-color-accent rounded-lg overflow-hidden">
-                          <button className="hover:bg-blue-600 duration-200 text-white px-4 py-2"
-                                  onTouchEnd={ handlePrevPage }
-                                  onClick={ handlePrevPage }>
-                            <FontAwesomeIcon icon={ faChevronLeft }/>
-                          </button>
-                          <div className="w-16 text-center py-2">{ activePage } / { pageCount }</div>
-                          <button className="hover:bg-blue-600 duration-200 text-white px-4 py-2"
-                                  onTouchEnd={ handleNextPage }
-                                  onClick={ handleNextPage }>
-                            <FontAwesomeIcon icon={ faChevronRight }/>
-                          </button>
-                        </div>
-                      </div>
-                  ) }
                 </>
             ) : (
                 <ProjectDetails project={ activeProject } closeProject={ closeProject }/>

@@ -85,7 +85,7 @@ const projects = [
     github: 'https://github.com/SiebeM03/portfolio-react',
     description: {
       short: <p>This is my portfolio website, the one you're visiting right at this moment. I created this website to
-        showcase my projects and skills. I have created this website using React and TailwindCSS.</p>,
+        showcase my projects and skills.</p>,
     },
     skills:
         [
@@ -99,7 +99,7 @@ const projects = [
     tabs: [projectTabs.description, projectTabs.technologies],
     github: 'https://github.com/BrentSimons/Project-EDE-BNB',
     description: {
-      short: 'School project in which we had to create a cluster of microservices that can interact with each other. This ',
+      short: 'School project in which we had to create a cluster of microservices that can interact with each other.',
       long: (
           <div className="space-y-4">
             <p>
