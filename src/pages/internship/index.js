@@ -7,15 +7,68 @@ const Button = ({ onClick, children }) => (
             className="duration-200 font-bold underline decoration-color-accent decoration-2 hover:text-color-accent">{ children }</button>
 )
 
+const DocumentsCard = () => {
+  return (
+      <div className="bg-color-background-300 border-2 border-color-background-200 rounded-lg p-4 space-y-2
+            sm:max-w-80 mx-auto sm:float-start sm:mr-6 sm:mb-4
+          ">
+
+
+        <img className="w-48 mx-auto"
+             src={ process.env.PUBLIC_URL + '/images/lykiosLogo.png' } alt="Lykios logo"/>
+
+        <p>For more information about my internship, you can take a look at the following document (written in
+          Dutch).</p>
+
+        <div className="flex justify-between !mt-6">
+          <p>Project plan</p>
+          <div className="space-x-6">
+            <a href={ process.env.PUBLIC_URL + '/files/internship/project_plan_alloc8.pdf' } target="_blank">
+              <i className="fas fa-eye hover:text-color-accent duration-100"/>
+            </a>
+            <a href={ process.env.PUBLIC_URL + '/files/internship/project_plan_alloc8.pdf' }
+               download="Alloc8-Projectplan.pdf">
+              <i className="fas fa-download hover:text-color-accent duration-100"/>
+            </a>
+          </div>
+        </div>
+
+        <div className="flex justify-between">
+          <p>Realisation document</p>
+          <div className="space-x-6">
+            <a href={ process.env.PUBLIC_URL + '/files/internship/realisatiedocument_alloc8.pdf' } target="_blank">
+              <i className="fas fa-eye hover:text-color-accent duration-100"/>
+            </a>
+            <a href={ process.env.PUBLIC_URL + '/files/internship/realisatiedocument_alloc8.pdf' }
+               download="Alloc8-Realisatiedocument.pdf">
+              <i className="fas fa-download hover:text-color-accent duration-100"/>
+            </a>
+          </div>
+        </div>
+
+        <div className="flex justify-between">
+          <p>Reflection</p>
+          <div className="space-x-6">
+            <a href={ process.env.PUBLIC_URL + '/files/internship/reflectie_alloc8.pdf' } target="_blank">
+              <i className="fas fa-eye hover:text-color-accent duration-100"/>
+            </a>
+            <a href={ process.env.PUBLIC_URL + '/files/internship/reflectie_alloc8.pdf' }
+               download="Alloc8-Reflectie.pdf">
+              <i className="fas fa-download hover:text-color-accent duration-100"/>
+            </a>
+          </div>
+        </div>
+      </div>
+  )
+}
+
 const internship = {
   name: 'Internship: Alloc8',
   tabs: [projectTabs.description, projectTabs.technologies, projectTabs.results],
   description: {
     long: (
         <div className="space-y-4">
-          <img className="max-w-[30%] min-w-48 mx-auto sm:mx-8 sm:float-start"
-               src={ process.env.PUBLIC_URL + '/images/lykiosLogo.png' } alt="Lykios logo"/>
-
+          <DocumentsCard/>
 
           <p>During my internship at <Button
               onClick={ () => window.open('https://lykios.be/', '_blank') }>Lykios</Button>,
@@ -39,6 +92,7 @@ const internship = {
             for future projects in web development. The hands-on experience and practical knowledge I acquired have been
             instrumental in my growth as a developer, enabling me to build robust and user-friendly web
             applications.</p>
+
         </div>
     )
   },
