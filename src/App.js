@@ -61,7 +61,7 @@ function App() {
       <ModalNav isModalView={ isModalView } isAnimated={ isAnimated } currentPath={ currentPath }
                 closeOuterNav={ closeOuterNav } handlePathChange={ handlePathChange }>
         <div onWheel={ handleScroll } ref={ containerRef }>
-          <ScreenSize/>
+          {/*<ScreenSize/>*/}
           <DefaultScreenLayout currentPath={ currentPath } setCurrentPath={ handlePathChange }
                                openOuterNav={ openOuterNav }>
             { pages.map((page, index) => {
