@@ -21,7 +21,7 @@ const ResultsComponent = ({ results }) => {
 
   return (
       <div className="h-full mt-4">
-        <div className="h-[calc(100%-200px)] relative flex flex-col items-center space-y-3">
+        <div className="h-[calc(100%-280px)] relative flex flex-col items-center space-y-3">
           <div className="flex items-center min-w-80 justify-between space-x-5 select-none">
             <FontAwesomeIcon icon={ faArrowLeft } className="w-6 h-6 opacity-50 hover:opacity-100 duration-200"
                              onClick={ handlePrevResult } onTouchEnd={ handlePrevResult }/>

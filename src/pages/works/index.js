@@ -55,7 +55,7 @@ const Works = ({ isActive }) => {
             <h1 className="text-3xl text-white font-bold">Works</h1>
 
             <div ref={ textElement }
-                 className={ `flex flex-wrap max-h-[calc(100%-36px)] overflow-y-auto ${ activeGridConfig.classes }` }>
+                 className={ `flex flex-wrap max-h-[calc(100%-116px)] overflow-y-auto ${ activeGridConfig.classes }` }>
               { projects.map((project, index) => (
                   <ProjectCard key={ index } project={ project } openProject={ openProject }/>
               )) }
