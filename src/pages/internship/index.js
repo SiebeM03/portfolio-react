@@ -52,9 +52,9 @@ const DocumentsCard = () => {
             <a href={ process.env.PUBLIC_URL + '/files/internship/reflectie_alloc8.pdf' } target="_blank">
               <i className="fas fa-eye hover:text-color-accent duration-100"/>
             </a>
-            <a href={ process.env.PUBLIC_URL + '/files/CV_SiebeMichiels_2310_EN.pdf' }
-               download="Resume.pdf">
-              <i className="fas fa-download text-green-400 hover:text-gray-400 duration-100"/>
+            <a href={ process.env.PUBLIC_URL + '/files/internship/reflectie_alloc8.pdf' }
+               download="Alloc8-Reflectie.pdf">
+              <i className="fas fa-download hover:text-gray-400 duration-100"/>
             </a>
           </div>
         </div>
