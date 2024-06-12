@@ -3,9 +3,9 @@ import usePreventScroll from '../../../hooks/usePreventScroll'
 const Description = ({ description }) => {
   const { textElement } = usePreventScroll();
   return (
-      <p className="project-description text-white overflow-y-auto pr-4 pb-4" ref={ textElement }>
+      <div ref={ textElement } className="mt-4 h-[calc(100%-190px)] overflow-y-auto">
         { description }
-      </p>
+      </div>
   )
 }
 

@@ -1,8 +1,8 @@
-import { angular, docker, java, mongodb, python, react, spring, sql, tailwind } from './technologies'
+import { angular, docker, mongodb, python, react, spring, sql, tailwind } from './technologies'
 import { DescriptionIcon, ResultsIcon, TechnologiesIcon } from '../pages/works/details/segmentIcons'
 
 
-const projectTabs = {
+export const projectTabs = {
   description: {
     title: 'description',
     icon: <DescriptionIcon/>
@@ -23,8 +23,7 @@ const projects = [
     name: 'Project 4.0',
     tabs: [projectTabs.description, projectTabs.technologies, projectTabs.results],
     description: {
-      short: <p>School project for an actual client in which we got to work with a multi-disciplinary team to create and
-        host a web application.</p>,
+      short: "School project for an actual client in which we got to work with a multi-disciplinary team to create and host a web application.",
       long: (
           <div className="space-y-4">
             <p>
@@ -84,8 +83,7 @@ const projects = [
     tabs: [projectTabs.technologies],
     github: 'https://github.com/SiebeM03/portfolio-react',
     description: {
-      short: <p>This is my portfolio website, the one you're visiting right at this moment. I created this website to
-        showcase my projects and skills.</p>,
+      short: "This is my portfolio website, the one you're visiting right at this moment. I created this website to showcase my projects and skills.",
     },
     skills:
         [

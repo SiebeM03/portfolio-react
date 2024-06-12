@@ -3,13 +3,14 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 const Technologies = ({ skills }) => {
   return (
-      <div className="space-y-8">
+      <div className="mt-4 h-full space-y-8">
         <p>
-          Tools and technologies used in this project, ordered by the amount of time I spent on them during this project:
+          Tools and technologies used in this project, ordered by the amount of time I spent on them during this
+          project:
         </p>
 
         { skills.sort((skillA, skillB) => skillB.focus - skillA.focus).map((skill, index) => (
-            <div className="flex space-x-2 w-full">
+            <div key={ index } className="flex space-x-2 w-full">
               <img key={ index } src={ skill.image } alt={ skill.name } className="h-10"/>
               <div className="w-full">
                 <div className="text-white h-8 text-lg flex items-center space-x-2 cursor-pointer"

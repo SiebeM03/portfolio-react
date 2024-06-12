@@ -1,14 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Description from './description'
 import Technologies from './technologies'
 import ResultsComponent from './resultsComponent'
 import GithubButton from '../../../components/githubButton'
 
 
-const ProjectDetails = ({ project, closeProject }) => {
+const ProjectDetails = ({ project, closeProject, isActive = false }) => {
   const [activeSegment, setActiveSegment] = useState(project.tabs[0].title);
+
+  useEffect(() => {
+    if (!isActive) return
+    setActiveSegment(project.tabs[0].title);
+  }, [isActive, project.tabs]);
 
   return (
       <div className="h-full"
@@ -16,18 +21,21 @@ const ProjectDetails = ({ project, closeProject }) => {
            onTouchMove={ (e) => e.stopPropagation() }
            onTouchEnd={ (e) => e.stopPropagation() }
       >
-        <button onClick={ closeProject } onTouchEnd={ closeProject }
-                className="text-base flex items-center opacity-50 hover:opacity-100 duration-200">
-          <FontAwesomeIcon icon={ faArrowLeft } className="h-5 mr-2"/> Go back
-        </button>
+        { closeProject !== undefined &&
+            <button onClick={ closeProject } onTouchEnd={ closeProject }
+                    className="text-base flex items-center opacity-50 hover:opacity-100 duration-200">
+              <FontAwesomeIcon icon={ faArrowLeft } className="h-5 mr-2"/> Go back
+            </button>
+        }
 
         <div className="h-full mt-4">
           <h1 className="text-3xl text-white font-bold flex items-center">
             { project.name }
-            { project.github && <GithubButton url={ project.github } classes="ml-12 h-8 w-8 hover:text-color-accent duration-200"/> }
+            { project.github &&
+                <GithubButton url={ project.github } classes="ml-12 h-8 w-8 hover:text-color-accent duration-200"/> }
           </h1>
 
-          <div className="px-4 mt-4 h-full flex flex-col">
+          <div className="sm:px-4 mt-4 h-full">
             <div className="flex justify-around">
               { project.tabs.map((tab, index) => {
                 const isActive = activeSegment === tab.title;
@@ -48,20 +56,17 @@ const ProjectDetails = ({ project, closeProject }) => {
               }
             </div>
 
-            <div className="mt-4 h-full flex-1">
-              { activeSegment === 'description' && (
-                  <Description description={ project.description.long }/>
-              ) }
+            { activeSegment === 'description' && (
+                <Description description={ project.description.long }/>
+            ) }
 
-              { activeSegment === 'technologies' && (
-                  <Technologies skills={ project.skills }/>
+            { activeSegment === 'technologies' && (
+                <Technologies skills={ project.skills }/>
+            ) }
 
-              ) }
-
-              { activeSegment === 'results' && (
-                  <ResultsComponent results={ project.results }/>
-              ) }
-            </div>
+            { activeSegment === 'results' && (
+                <ResultsComponent results={ project.results }/>
+            ) }
           </div>
         </div>
       </div>

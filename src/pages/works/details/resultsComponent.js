@@ -20,20 +20,23 @@ const ResultsComponent = ({ results }) => {
   }
 
   return (
-      <div className="relative project-description flex flex-col items-center space-y-3">
-        <div className="h-[10%] flex items-center min-w-72 justify-between space-x-5 select-none">
-          <FontAwesomeIcon icon={ faArrowLeft } className="w-6 h-6 opacity-50 hover:opacity-100 duration-200"
-                           onClick={ handlePrevResult } onTouchEnd={ handlePrevResult }/>
-          <h2 className="text-xl font-bold">{ activeResult.title }</h2>
-          <FontAwesomeIcon icon={ faArrowRight } className="w-6 h-6 opacity-50 hover:opacity-100 duration-200"
-                           onClick={ handleNextResult } onTouchEnd={ handleNextResult }/>
-        </div>
+      <div className="h-full mt-4">
+        <div className="h-[calc(100%-200px)] relative flex flex-col items-center space-y-3">
+          <div className="flex items-center min-w-80 justify-between space-x-5 select-none">
+            <FontAwesomeIcon icon={ faArrowLeft } className="w-6 h-6 opacity-50 hover:opacity-100 duration-200"
+                             onClick={ handlePrevResult } onTouchEnd={ handlePrevResult }/>
+            <h2 className="text-xl font-bold text-center">{ activeResult.title }</h2>
+            <FontAwesomeIcon icon={ faArrowRight } className="w-6 h-6 opacity-50 hover:opacity-100 duration-200"
+                             onClick={ handleNextResult } onTouchEnd={ handleNextResult }/>
+          </div>
 
-        <div className="h-[65%] w-full">
-          <img src={ activeResult.image } alt={ activeResult.title } className="mx-auto h-full object-contain select-none"/>
-        </div>
+          <div className="max-h-[60%]">
+            <img src={ activeResult.image } alt={ activeResult.title }
+                 className="mx-auto h-full object-contain select-none"/>
+          </div>
 
-        <p ref={ textElement } className="h-[25%] w-full overflow-y-auto pr-4">{ activeResult.description }</p>
+          <p ref={ textElement } className="w-full overflow-y-auto pr-4">{ activeResult.description }</p>
+        </div>
       </div>
   )
 }
