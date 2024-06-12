@@ -57,7 +57,7 @@ const ProjectDetails = ({ project, closeProject, isActive = false }) => {
             </div>
 
             { activeSegment === 'description' && (
-                <Description description={ project.description.long }/>
+                <Description description={ project.description.long } isActive={ isActive } heightClass={ closeProject !== undefined ? 'h-[calc(100%-250px)] ' : 'h-[calc(100%-226px)] '}/>
             ) }
 
             { activeSegment === 'technologies' && (

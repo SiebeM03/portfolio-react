@@ -20,6 +20,14 @@ const Home = ({ isActive }) => {
             Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
             the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
             learn more!
+            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
+            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
+            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
+            learn more!
+            My name is Siebe Michiels and I am a passionate student of Applied Computer Sciences at Thomas More
+            Kempen. On this website, you'll find information about me, my internship, the projects I've worked on, and
+            the skills I've developed throughout my journey. Feel free to explore and get in touch if you'd like to
+            learn more!
           </p>
         </div>
       </div>

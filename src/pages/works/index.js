@@ -47,15 +47,14 @@ const Works = ({ isActive }) => {
   const closeProject = () => setActiveProject(null);
 
 
-  const { textElement } = usePreventScroll()
+  const { textElement } = usePreventScroll(isActive)
 
   return activeProject === null
       ? (
           <div className="h-full flex flex-col justify-center">
             <h1 className="text-3xl text-white font-bold">Works</h1>
 
-            <div ref={ textElement }
-                 className={ `flex flex-wrap max-h-[calc(100%-116px)] overflow-y-auto ${ activeGridConfig.classes }` }>
+            <div ref={ textElement } className={ `flex flex-wrap max-h-[calc(100%-116px)] overflow-y-auto ${ activeGridConfig.classes }` }>
               { projects.map((project, index) => (
                   <ProjectCard key={ index } project={ project } openProject={ openProject }/>
               )) }
